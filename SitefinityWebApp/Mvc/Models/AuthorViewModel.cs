@@ -101,7 +101,7 @@ namespace SitefinityWebApp.Mvc.Models
         /// <param name="obj">The object.</param>
         /// <param name="currentNewsItem">The current news item.</param>
         /// <returns>Author View Moddel</returns>
-        public static AuthorViewModel GetAuthorViewModel(DynamicContent obj, NewsItem currentNewsItem = null)
+        public static AuthorViewModel GetAuthorViewModel(DynamicContent obj)
         {
             return new AuthorViewModel(obj)
             {

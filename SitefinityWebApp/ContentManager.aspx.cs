@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Telerik.OpenAccess;
 using Telerik.Sitefinity;
+using Telerik.Sitefinity.Data;
 using Telerik.Sitefinity.Data.Linq.Dynamic;
 using Telerik.Sitefinity.DynamicModules;
 using Telerik.Sitefinity.DynamicModules.Model;
@@ -39,6 +40,7 @@ namespace SitefinityWebApp
             TaxonomyManager tMan = TaxonomyManager.GetManager();
             foreach (var newsItem in man.GetNewsItems().Where(i => i.Status == Telerik.Sitefinity.GenericContent.Model.ContentLifecycleStatus.Master))
             {
+                
                 tags = newsItem.GetValue<TrackedList<Guid>>("Tags").ToList().Select(i => tMan.GetTaxon(i).Title.Value).ToList();
 
                 newsItems.AppendLine(String.Format("{0}|{1}|{2}", newsItem.Title, String.Join(",", tags), newsItem.Content.Value.Replace("\n","")));
@@ -144,9 +146,9 @@ namespace SitefinityWebApp
         }
         private void CreateNews(string[] values)
         {
-            NewsManager man = NewsManager.GetManager();
+            NewsManager man = NewsManager.GetManager("", "123");
             man.Provider.SuppressSecurityChecks = true;
-            TaxonomyManager tMan = TaxonomyManager.GetManager();
+            TaxonomyManager tMan = TaxonomyManager.GetManager("","456");
             tMan.Provider.SuppressSecurityChecks = true;
             string title = values[0],
                 tags = values[1],
@@ -167,7 +169,7 @@ namespace SitefinityWebApp
                 tag.Description = "This tag categorizes the Breakfast";
                 tag.UrlName = new Lstring(Regex.Replace(tags, @"[^\w\-\!\$\'\(\)\=\@\d_]+", "-").ToLower());
                 taxa.Taxa.Add(tag);
-                tMan.SaveChanges();
+            
             }
 
             newsItem.Organizer.AddTaxa("Tags", tag.Id);
@@ -181,7 +183,7 @@ namespace SitefinityWebApp
             man.RecompileAndValidateUrls(newsItem);
 
             //Save the changes.
-            man.SaveChanges();
+            TransactionManager.CommitTransaction("123");
 
             //Publish the news item. The published version acquires new ID.
             var bag = new Dictionary<string, string>();

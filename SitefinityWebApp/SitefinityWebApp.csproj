@@ -786,6 +786,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AzureWebRole.cs" />
+    <Compile Include="Configs\Custom.cs" />
     <Compile Include="ContentManager.aspx.cs">
       <DependentUpon>ContentManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -793,8 +794,14 @@
     <Compile Include="ContentManager.aspx.designer.cs">
       <DependentUpon>ContentManager.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Mvc\Controllers\AuthorsController.cs" />
     <Compile Include="Mvc\Helpers\WidgetExtensions.cs" />
+    <Compile Include="Mvc\Models\AuthorsModel.cs" />
     <Compile Include="Mvc\Models\AuthorViewModel.cs" />
+    <Compile Include="MyCustomModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -805,6 +812,8 @@
     <Content Include="ClientBin\Telerik.Sitefinity.Silverlight.xap" />
     <Content Include="ContentManager.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Mvc\Scripts\Authors\designerview-simple.js" />
     <Content Include="ResourcePackages\Custom\assets\dist\css\styles.css" />
     <Content Include="ResourcePackages\Custom\assets\dist\css\styles.min.css" />
     <Content Include="ResourcePackages\Custom\assets\dist\fonts\sf-icon-font.svg" />
@@ -1165,6 +1174,9 @@
     <Content Include="App_Data\Sitefinity\Configuration\NewsConfig.contentViewControls.NewsBackend.views.NewsBackendPreview.config" />
     <Content Include="App_Data\Sitefinity\Configuration\NewsConfig.contentViewControls.NewsBackend.views.NewsBackendVersionPreview.config" />
     <Content Include="App_Data\Sitefinity\SF_DevMag.bak" />
+    <Content Include="Mvc\Views\Authors\Default.cshtml" />
+    <Content Include="Mvc\Views\Authors\DesignerView.Simple.cshtml" />
+    <None Include="Mvc\Views\Authors\DesignerView.Simple.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!--<Import Project="OpenAccessNuget.targets" />-->

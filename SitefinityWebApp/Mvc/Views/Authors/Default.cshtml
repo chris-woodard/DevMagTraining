@@ -1,0 +1,19 @@
+@model SitefinityWebApp.Mvc.Models.AuthorsModel
+
+<div class="row">
+    <h1>
+        @Html.Raw(Model.Title)
+    </h1>
+    @foreach (var item in Model.Authors)
+    {
+        <div class="col-md-2">
+            <div class="text-center">
+                <a href="#">
+                    <img class="img-circle" src="@item.Avatar" height="128" width="128" />
+                </a>
+                <h3><a href="#">@item.Name</a></h3>
+                <p>@item.JobTitle</p>
+            </div>
+        </div>
+    }
+</div>
